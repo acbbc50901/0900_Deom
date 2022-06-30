@@ -15,6 +15,46 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   },
+  {
+    path: '/login',
+    component: () => import('../views/LoginView.vue'),
+  },
+  {
+    path: '/dashboard',
+    component: () => import('../views/DashBoard.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/ProductsView.vue'),
+      },
+      {
+        path: 'allproducts',
+        component: () => import('../views/AllProduct.vue'),
+      },
+      {
+        path: 'discount',
+        component: () => import('../views/DiscountView.vue'),
+      },
+    ],
+  },
+  {
+    path: '/user',
+    component: () => import('../views/UserBoard.vue'),
+    children: [
+      {
+        path: 'cart',
+        component: () => import('../views/UserCart.vue'),
+      },
+      {
+        path: 'product/:productId',
+        component: () => import('../views/UserProduct.vue'),
+      },
+      {
+        path: 'checkout/:orderId',
+        component: () => import('../views/UserCheckout.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
